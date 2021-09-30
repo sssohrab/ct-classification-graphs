@@ -1,0 +1,32 @@
+{
+  "global":{
+    "device": "cuda:1",
+    "batch":  4000,
+    "epochs": 100,
+    "lr": 0.0005,
+    "weight_decay": 5e-4,
+    "workers": 2
+  },
+  "data":{
+      "source_dir": "preproc",
+      "train_path": "splits/train.txt",
+      "valid_path": "splits/valid.txt"
+  },
+  "features": {
+    "key": "Basic",
+    "type": "LM",
+    "init": {
+      "model_name": "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+      "tokenizer_name": "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+      "max_len": 512
+    }
+
+  },
+  "network":{
+    "net":	"FMLP",
+    "d_in": 768,
+    "c_in": 9,
+    "dropout": 0.2,
+    "sigm": true
+  }
+}

@@ -1,0 +1,14 @@
+storage/*
+*/storage/*
+__pycache__
+*/__pycache__/*
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+.idea*
+*/.idea*/*
+.tmp
+*/.tmp/*
+.DS_Store
+*/.DS_Store/*
+*.pkl
+

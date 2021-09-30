@@ -1,0 +1,17 @@
+{
+  "data":{
+      "source_dir": "preproc",
+      "train_path": "splits/train.txt"
+  },
+  "features": {
+    "key": "Basic",
+    "init": {
+      "proj_dim": 768,
+      "nnz_proj": 5000,
+      "ngram_low": 1,
+      "ngram_high": 1,
+      "max_features": 500000
+    }
+
+  }
+}

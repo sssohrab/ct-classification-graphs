@@ -1,0 +1,14 @@
+{
+  "train_run": "<Insert the tensorboard tag of the experiment where you trained your model>",
+
+  "global":{
+    "device": "cuda:0",
+    "batch":  2000,
+    "workers": 0
+  },
+
+  "data":{
+      "source_dir": "preproc",
+      "test_path": "splits/test.txt"
+  }
+}
