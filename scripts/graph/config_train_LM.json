@@ -1,0 +1,55 @@
+{
+  "global":{
+    "device": "cuda:0",
+    "batch":  4000,
+    "epochs": 200,
+    "weight_decay": 1e-4,
+    "lr": 0.0005,
+    "workers": 2
+  },
+  "data":{
+    "source_dir": "raw/api-json/",
+    "split_train_path": "splits/train.txt",
+    "split_valid_path": "splits/valid.txt",
+    "split_test_path": "splits/test.txt",
+    "target_train_dir": "preproc/graph/lm/train",
+    "target_valid_dir": "preproc/graph/lm/valid",
+    "target_test_dir": "preproc/graph/lm/test",
+    "exclude_fields": ["StatusModule", "ResultsSection", "DerivedSection"],
+    "root_to_leaf": false
+
+  },
+  "features": {
+    "type": "LM",
+    "init": {
+      "model_name": "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+      "tokenizer_name": "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+      "max_len": 512
+
+    }
+  },
+
+  "pooling": {
+    "method": "selective",
+    "base_nodes_list": [
+      "SponsorCollaboratorsModule",
+      "OversightModule",
+      "DescriptionModule",
+      "ConditionsModule",
+      "DesignModule",
+      "ArmsInterventionsModule",
+      "OutcomesModule",
+      "EligibilityModule",
+      "ContactsLocationsModule"
+    ]
+  },
+
+
+  "network":{
+    "net":	"",
+    "d_in": 768,
+    "d_h": 200,
+    "dropout": 0.3,
+    "sigm": true
+  }
+}

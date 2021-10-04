@@ -8,7 +8,7 @@
     "workers": 2
   },
   "data":{
-      "source_dir": "preproc",
+      "source_dir": "preproc/flat/",
       "train_path": "splits/train.txt",
       "valid_path": "splits/valid.txt"
   },

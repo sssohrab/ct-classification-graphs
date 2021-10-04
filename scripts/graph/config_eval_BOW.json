@@ -8,7 +8,9 @@
   },
 
   "data":{
-      "source_dir": "preproc/flat",
-      "test_path": "splits/test.txt"
+    "source_dir": "raw/api-json/",
+    "split_test_path": "splits/test.txt",
+    "target_test_dir": "preproc/graph/bow/test"
+
   }
 }

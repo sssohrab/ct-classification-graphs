@@ -1,0 +1,50 @@
+{
+  "global":{
+    "device": "cuda:0",
+    "batch":  4000,
+    "epochs": 200,
+    "weight_decay": 0,
+    "lr": 0.0005,
+    "workers": 0
+  },
+  "data":{
+      "source_dir": "raw/api-json/",
+      "split_train_path": "splits/train.txt",
+      "split_valid_path": "splits/valid.txt",
+      "split_test_path": "splits/test.txt",
+      "target_train_dir": "preproc/graph/bow/train",
+      "target_valid_dir": "preproc/graph/bow/valid",
+      "target_test_dir": "preproc/graph/bow/test",
+      "exclude_fields": ["StatusModule", "ResultsSection", "DerivedSection"],
+      "root_to_leaf": false
+  },
+  "features": {
+    "type": "BOW",
+    "init": {
+      "path": "../../storage/bow_obj_dim768_nnzp5000_l1_h1_max500000.pkl"
+    }
+  },
+
+  "pooling": {
+    "method": "selective",
+    "base_nodes_list": [
+      "SponsorCollaboratorsModule",
+      "OversightModule",
+      "DescriptionModule",
+      "ConditionsModule",
+      "DesignModule",
+      "ArmsInterventionsModule",
+      "OutcomesModule",
+      "EligibilityModule",
+      "ContactsLocationsModule"
+    ]
+  },
+
+  "network":{
+    "net":	"",
+    "d_in": 768,
+    "d_h": 200,
+    "dropout": 0.2,
+    "sigm": true
+  }
+}

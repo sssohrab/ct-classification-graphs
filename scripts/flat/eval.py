@@ -49,7 +49,7 @@ if "bow" in features_type.lower():
     ngram_high = config["features"]["init"]["ngram_high"]
     max_features = config["features"]["init"]["max_features"]
 
-    featurizer_obj_path = os.path.join('./storage',
+    featurizer_obj_path = os.path.join('../../storage',
                                        'bow_obj_dim{}_nnzp{}_l{}_h{}_max{}.pkl'.format(dim, nnz_proj, ngram_low,
                                                                                        ngram_high, max_features))
 
