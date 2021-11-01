@@ -1,7 +1,7 @@
 # Hierarchical text classification using geometric deep learning
 
 A PyTorch implementation and the required material to accompany our EM-NLP 2021 paper
- ["Classification of hierarchical text using geometric deep learning: the case of clinical trials corpus"](https://arxiv.org).
+ ["Classification of hierarchical text using geometric deep learning: the case of clinical trials corpus"](https://arxiv.org/abs/2110.15710).
 
 Our use case is the clinical trials data, which are hierarchically organized text. Along with text embedding using
 pre-trained transformers, the idea is to use graph deep learning to furthermore capture the hierarchical structure.
@@ -14,9 +14,9 @@ pre-trained transformers, the idea is to use graph deep learning to furthermore 
 [this link](https://zenodo.org/record/5482332#.YVrFwaCxU6U). The raw data is simply downloaded from 
 [CTGov website](https://ClinicalTrials.gov/AllAPIJSON.zip), and the labeling procedure is explained in the paper.
 
-- Flatten the content of `AllAPIJSON.zip` into a directory named `<data_dire>/ctgov/raw/` (e.g., using the Linux command 
+- Flatten the content of `AllAPIJSON.zip` into a directory named `<data_dir>/ctgov/raw/` (e.g., using the Linux command 
 `$ find -name *.json -exec mv --target raw {} \+`).
-- Copy the downloaded splits with the labels into `<data_dire>/ctgov/splits/`.
+- Copy the downloaded splits with the labels into `<data_dir>/ctgov/splits/`.
 
 ### Pre-processing:
 
@@ -30,10 +30,10 @@ this paper (i.e., an arbitrary graph where the leaf nodes contain free text.)
 For the "flat" strctures, 9 important fields (*"SponsorCollaboratorsModule", "OversightModule",
 "DescriptionModule", "ConditionsModule", "DesignModule", "ArmsInterventionsModule",
 "OutcomesModule", "EligibilityModule", "ContactsLocationsModule"*) are extracted and organized under 
-``<data_dire>/ctgov/preproc/flat/`` as json files. For this, run the following command in a UNIX-like terminal:
+``<data_dir>/ctgov/preproc/flat/`` as json files. For this, run the following command in a UNIX-like terminal:
 
 ```
-$ cd <repo_dire>/scripts/preprocess
+$ cd <repo_dir>/scripts/preprocess
 $ python3 preprocess.py
 ```
 
@@ -42,7 +42,7 @@ TF-IDF, or using language models.
 
 For BOW-based representation, as described in the paper, a sparse random projections stage is used to decrease the 
 dimensionality of the tokens (from around 1 Million to 1 Thousand). To first train the BOW-object and pickle it under
-`<repo_dire>//storage/`:
+`<repo_dir>/storage/`:
 
 ```
 $ python3 fit_bow_obj.py -c config_train_BOW.json
@@ -58,7 +58,7 @@ To avoid feature extraction during training and at each epoch, we can extract fe
 
 
 ```
-$ cd <repo_dire>/scripts/preprocess
+$ cd <repo_dir>/scripts/preprocess
 $ python3 digitize_text.py -c config_train.json
 ```
 
@@ -69,11 +69,11 @@ Typical exemplar values are provided under `config_train_BOW.json` and `config_t
 Once the vectorial representations are stored to disk, training is done using:
 
 ```
-cd <repo_dire>/scripts/flat
+cd <repo_dir>/scripts/flat
 python3 train -c config_train.json
 ```
 
-After the training is concluded, the tensorboard run under `<repo_dire>/scripts/flat/runs/` can be used in the inference
+After the training is concluded, the tensorboard run under `<repo_dir>/scripts/flat/runs/` can be used in the inference
 time to classify CT's of the test set using:
 
 ```
@@ -90,7 +90,7 @@ the graph-based classification requires first to save the entire database into d
 `torch_geometric.data.InMemoryDataset`instance). This is done using:
 
 ```
-$ cd <repo_dire>/scripts/graph/
+$ cd <repo_dir>/scripts/graph/
 $ python3 digitize_text.py -c config_train.json
 ```
 
@@ -104,7 +104,7 @@ done similarly to the flat case using:
 
 
 ```
-$ cd <repo_dire>/scripts/graph
+$ cd <repo_dir>/scripts/graph
 $ python3 train -c config_train.json
 $ pytohn3 eval.py -c config_eval.json
 ```
